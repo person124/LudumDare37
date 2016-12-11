@@ -4,12 +4,12 @@ using System.Collections;
 public class HouseManager : MonoBehaviour {
 
 	//Global Variables
-	public const int MAX_HEALTH = 100;
-	public const int MAX_PLAYER_HEALTH = 100;
+	public int MAX_HEALTH = 100;
+	public int MAX_PLAYER_HEALTH = 100;
 
 	public enum MobTypes {melee, gun, hyper};
 	public const int MOB_COUNT = 3;
-	//public const int [] MOB_COUNT_MAX = new int [MOB_COUNT] {10, 2, 1};
+	public int MAX_MELEE = 10, MAX_GUN = 2, MAX_HYPER = 1;
 
 	//Private Members such as health and counts
 	private int health, playerHealth;
@@ -28,8 +28,15 @@ public class HouseManager : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown ("tab"))
-			isViewingHouse = !isViewingHouse;
+		//TO DO, PUT SOMETHING HERE RELATED TO PLAYER HEALTH
+	}
+
+	public bool isControlingHouse() {
+		return isViewingHouse;
+	}
+
+	public void switchControl () {
+		isViewingHouse = !isViewingHouse;
 	}
 
 	public void damagePlayer (int amount) {
