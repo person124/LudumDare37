@@ -18,7 +18,7 @@ public class HouseManager : MonoBehaviour {
 	//Private Members such as health and counts
 	private int health, playerHealth;
 	private int [] mobCounts;
-	private bool isViewingHouse;
+	private bool isViewingHouse, isChanging = false;
 
 	void Start () {
 		health = MAX_HEALTH;
@@ -35,6 +35,16 @@ public class HouseManager : MonoBehaviour {
 
 	void Update () {
 		//TO DO, PUT SOMETHING HERE RELATED TO PLAYER HEALTH
+
+		if (!isChanging) {
+			if (Input.GetKey (KeyCode.Tab)) {
+				if (isViewingHouse)
+					switchControl ();
+				else if (room.insideTabZone (player))
+					switchControl ();
+			}
+		} else if (!Input.GetKey (KeyCode.Tab))
+			isChanging = false;
 	}
 
 	public bool isControllingHouse() {
@@ -42,7 +52,16 @@ public class HouseManager : MonoBehaviour {
 	}
 
 	public void switchControl () {
+		//TO DO
+		//SWITCH CAMERA VIEW
 		isViewingHouse = !isViewingHouse;
+		isChanging = true;
+
+		if (isViewingHouse) {
+			MAIN_CAMERA.GetComponent<Transform> ().position = new Vector3 (100, 100, -10);
+		} else {
+			MAIN_CAMERA.GetComponent<Transform> ().position = room.getCameraPosition ();
+		}
 	}
 
 	public void damagePlayer (int amount) {

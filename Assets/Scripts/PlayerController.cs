@@ -16,13 +16,6 @@ public class PlayerController : MonoBehaviour {
 		rigid = GetComponent<Rigidbody2D> ();
 	}
 
-	void Update () {
-		if (!manager.isControllingHouse () && Input.GetKey (KeyCode.Tab)) {
-			if (manager.room.insideTabZone (this))
-				manager.switchControl ();
-		}
-	}
-
 	void FixedUpdate () {
 		//Movement
 		if (!manager.isControllingHouse ()) {
