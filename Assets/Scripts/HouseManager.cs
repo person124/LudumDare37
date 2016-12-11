@@ -11,6 +11,10 @@ public class HouseManager : MonoBehaviour {
 	public const int MOB_COUNT = 3;
 	public int MAX_MELEE = 10, MAX_GUN = 2, MAX_HYPER = 1;
 
+	public Camera MAIN_CAMERA;
+	public PlayerController player;
+	public RoomHandler room;
+
 	//Private Members such as health and counts
 	private int health, playerHealth;
 	private int [] mobCounts;
@@ -25,13 +29,15 @@ public class HouseManager : MonoBehaviour {
 			mobCounts [i] = 0;
 
 		isViewingHouse = false;
+
+		MAIN_CAMERA = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
 	}
 
 	void Update () {
 		//TO DO, PUT SOMETHING HERE RELATED TO PLAYER HEALTH
 	}
 
-	public bool isControlingHouse() {
+	public bool isControllingHouse() {
 		return isViewingHouse;
 	}
 
