@@ -26,7 +26,18 @@ public class RoomHandler : MonoBehaviour {
 	}
 
 	void Update () {
-	
+		
+	}
+
+	public Vector3 getEnemySpawnLocation () {
+		return getRange (-3, 3, -4, -3);
+	}
+
+	private Vector3 getRange(float xMin, float xMax, float yMin, float yMax) {
+		float xLoc = Random.Range (0, Mathf.Abs (xMin - xMax)) + xMin + transform.position.x;
+		float yLoc = Random.Range (0, Mathf.Abs (yMin - yMax)) + yMin + transform.position.y;
+
+		return new Vector3 (xLoc, yLoc, 0.0f);
 	}
 
 	public bool insideTabZone (PlayerController player) {

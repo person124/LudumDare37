@@ -7,9 +7,10 @@ public class HouseManager : MonoBehaviour {
 	public int MAX_HEALTH = 100;
 	public int MAX_PLAYER_HEALTH = 100;
 
-	public enum MobTypes {melee, gun, hyper};
+	public enum MobTypes {melee, gun, mad};
+	public float[] MOB_SPEEDS = new float[3] {1, 1, 1};
 	public const int MOB_COUNT = 3;
-	public int MAX_MELEE = 10, MAX_GUN = 2, MAX_HYPER = 1;
+	public int MAX_MELEE = 10, MAX_GUN = 2, MAX_MAD = 1;
 
 	public Camera MAIN_CAMERA;
 	public PlayerController player;
@@ -104,5 +105,9 @@ public class HouseManager : MonoBehaviour {
 			health = 0;
 		else if (health > MAX_HEALTH)
 			health = MAX_HEALTH;
+	}
+
+	public bool getRandomBool () {
+		return Random.value >= 0.5f;
 	}
 }
